@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css;" />
+<meta http-equiv="Content-Style-Type" content="text/javascript;" />
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/i18n/jquery.spectrum-ja.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+  <link rel="stylesheet" href="source/YUI_reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Document</title>
+
+  <style>
+  @font-face {    font-family: "Yu Gothic";    src: local("Yu Gothic Medium");    font-weight: 100;  }
+  @font-face {    font-family: "Yu Gothic";    src: local("Yu Gothic Medium");    font-weight: 200;  }
+  @font-face {    font-family: "Yu Gothic";    src: local("Yu Gothic Medium");    font-weight: 300;  }
+  @font-face {    font-family: "Yu Gothic";    src: local("Yu Gothic Medium");    font-weight: 400;  }
+  @font-face {    font-family: "Yu Gothic";    src: local("Yu Gothic Bold");    font-weight: bold;  }
+  @font-face {    font-family: "Helvetica Neue";    src: local("Helvetica Neue Regular");    font-weight: 100;  }
+  @font-face {    font-family: "Helvetica Neue";    src: local("Helvetica Neue Regular");    font-weight: 200;  }
+  body {    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;  }
+  /* IE10以上 */
+  @media all and (-ms-high-contrast: none) {    body {      font-family: Verdana, Meiryo, sans-serif;    }  }
+
+*{box-sizing: border-box;}
+
+
+h1{
+  text-align: center;
+  font-size: 24px;
+  padding: 8.8vh;
+  color: #bbb;
+  letter-spacing: 0.2em;
+  background: #f2f2f2
+}
+h1 span{
+  color: #999;
+}
+  article{width: 960px;margin: 50px auto;}
+.editWrap{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  position: relative;
+}
+.editWrap li p{
+  position: relative;
+  font-weight: normal;
+  font-size: 17px;
+  color: #999;
+  letter-spacing: 0.05em;
+  padding: 10px 15px;cursor:pointer;
+  transition: 0.3s ease 0s;
+}
+.editWrap li p:after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #999;
+  transition: 0.3s ease 0s;
+  transform: scaleX(0);
+}
+.editWrap li p:hover{
+  /*text-shadow: 0 2px 0px rgba(0, 0, 0, 0.3);*/
+  color: #333;
+}
+.editWrap li p:hover:after{
+  /*transform: scaleX(1);*/
+
+}
+textarea{
+  border-left: transparent;
+  border-right: transparent;
+  border-top: transparent;
+  border-bottom: transparent;
+  width: 100%;padding: 30px;
+  box-shadow: 0 1px 6px #ccc inset;
+}
+
+#tArea02{
+  padding: 0 30px;
+  margin-top: 40px;
+}
+
+.h2{
+  font-size: 36px;font-weight: bold;
+  margin-bottom: 40px;
+}
+.h3{
+  font-size: 28px;font-weight: bold;
+  margin-bottom: 15px;
+}
+.h4{
+  font-size: 22px;font-weight: bold;
+  margin-bottom: 15px;
+}
+
+strong{
+font-weight: bold;
+}
+
+
+.sp-replacer{
+border: none;
+background: transparent;
+color:#999;
+}
+.sp-preview{
+  border: none;
+}
+
+.slider{
+  display: none;
+  position: absolute;
+}
+
+ol {
+  counter-reset: counter;
+  margin: 30px;
+}
+ol li{
+
+}
+ol li:before{
+  /* カウンタ（数字になる部分） */
+  text-align: center;
+  counter-increment: counter;
+  content: counter(counter);
+  display: inline-block;
+  font-size: 13px;
+  width: 17px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: 1px solid #666;
+  /* 色を変えたり、背景画像を敷いたり！自由自在！ */
+}
+</style>
+
+
+</head>
+<body>
+<main>
+<h1><span>H</span>TML <span>T</span>EXT <span>E</span>DITOR</h1>
+<article class="">
+  <ul class="editWrap">
+    <li><p class="editBtn" att="bold"><i class="fa fa-bold" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="boldred" style="color:#e66;"><i class="fa fa-bold" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="h2">h2</p></li>
+    <li><p class="editBtn" att="h3">h3</p></li>
+    <li><p class="editBtn" att="h4">h4</p></li>
+    <li><p class="editBtn" att="mb"><i class="fa fa-window-minimize" aria-hidden="true"></i></p><div id="mbslide" ><input class="slider" type="range" name="range" step="10"></div></li>
+    <li><p class="editBtn" att="br">br</p></li>
+    <li><p class="editBtn" att="link"><i class="fa fa-link" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="ulist"><i class="fa fa-list-ul" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="olist"><i class="fa fa-list-ol" aria-hidden="true"></i></p></li>
+
+    <li><p class="editBtn" att="alignL"><i class="fa fa-align-left" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="alignC"><i class="fa fa-align-center" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="alignR"><i class="fa fa-align-right" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="indent"><i class="fa fa-indent" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="undo"><i class="fa fa-reply" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="redo"><i class="fa fa-share" aria-hidden="true"></i></p></li>
+    <li><p class="editBtn" att="color"><input id="colorBtn" type="color"></p></li>
+
+  </ul>
+    <textarea name="name" rows="8" cols="40" id="tArea01"></textarea>
+    <!-- <textarea name="name" rows="8" cols="40" id="tArea02"></textarea> -->
+    <div id="tArea02"></div>
+  </main>
+
+</article>
+
+
+
+<script>
+ $(document).ready(function () {
+var inputArea = document.getElementById( "tArea01" ),
+    outputArea = document.getElementById( "tArea02" ),
+    colorBtn = document.getElementById( "colorBtn" ),
+    textSelectFlg = false,
+    sliderOpen =false,
+    linkUrl =  "",
+    selectStr = "",
+    replaceStr = ""
+    undoArray=[],
+    redoArray=[];
+
+function getSelectText(){
+      if('\v' === 'v')
+        return document.selection.createRange().text;
+      else
+        return ('getSelection' in window ? window : document).getSelection().toString();
+}
+
+
+
+function undo(){
+  if(undoArray.length){
+    redoArray.push(outputArea.innerHTML);
+      outputArea.innerHTML = inputArea.value = undoArray.pop();
+  }else{
+    return
+  }
+}
+
+function redo(){
+  if(redoArray.length){
+    undoArray.push(outputArea.innerHTML);
+      outputArea.innerHTML = inputArea.value = redoArray.pop();
+  }else{
+    return
+  }
+}
+
+function replaceSelectText(mode){
+
+  switch (mode) {
+    case "bold":
+      console.log("bold");
+      replaceStr="<strong>"+selectStr+"</strong>";
+    break;
+
+    case "boldred":
+      console.log("boldred");
+
+      if(selectStr.indexOf('<strong style="color:#e00">')>-1){
+        replaceStr=selectStr.replace('<strong style="color:#e00">',"").replace("</strong>","");
+      }else{
+        replaceStr='<strong style="color:#e00">'+selectStr+"</strong>";
+      };
+
+    break;
+
+    case "h2":
+      console.log("h2");
+      replaceStr='<h2 class="h2">'+selectStr+"</h2>\n";
+    break;
+
+    case "h3":
+      console.log("h3");
+      replaceStr='<h3 class="h3">'+selectStr+"</h3>\n";
+    break;
+
+    case "h4":
+      console.log("h4");
+      replaceStr='<h4 class="h4">'+selectStr+"</h4>\n";
+    break;
+
+    case "mb":
+      console.log("mb");
+      replaceStr='<p style="margin-bottom:40px">'+selectStr+"</p>\n";
+    break;
+
+    case "br":
+      console.log("br");
+      replaceStr=selectStr+"<br>\n";
+    break;
+
+    case "alignL":
+      console.log("alignL");
+      replaceStr='<p style="text-align:left">'+selectStr+"</p>\n";
+    break;
+
+    case "alignR":
+      console.log("alignR");
+      replaceStr='<p style="text-align:right">'+selectStr+"</p>\n";
+    break;
+
+    case "alignC":
+      console.log("alignc");
+      replaceStr='<p style="text-align:center">'+selectStr+"</p>\n";
+    break;
+
+    case "indent":
+      console.log("indent");
+      replaceStr='<p style="padding-left:20px">'+selectStr+"</p>\n";
+    break;
+
+    case "link":
+      console.log("link");
+      replaceStr='<a href="'+linkInput()+'">'+selectStr+"</a>\n";
+    break;
+
+    case "ulist":
+      console.log("ulink");
+      listGen("ul");
+    break;
+
+    case "olist":
+      console.log("olink");
+      listGen("ol");
+    break;
+
+    case "undo":
+      undo();
+      return
+    break;
+
+    case "redo":
+      redo();
+      return
+    break;
+
+    default:
+    break;
+  }
+  updater();
+}
+
+function linkInput(){
+  return window.prompt('何処に遷移いたしましょうか？');
+}
+
+function updater(){
+  if(selectStr.length){
+    outputArea.innerHTML=inputArea.value;
+    undoArray.push(outputArea.innerHTML);
+    outputArea.innerHTML = inputArea.value = outputArea.innerHTML.replace(selectStr,replaceStr);
+  }
+
+}
+
+function listGen(mode){
+
+  var splitArray = selectStr.split(/\r\n|\r|\n/);
+  replaceStr="";
+  replaceStr += "<"+mode+">\n";
+  for (var i = 0; i < splitArray.length; i++) {
+    replaceStr += "<li>"+splitArray[i]+"</li>\n";
+  }
+  replaceStr += "</"+mode+">\n";
+}
+
+/////////////////////// event /////////////////////////
+
+
+
+
+inputArea.oninput  = function (){
+outputArea.innerHTML=inputArea.value;
+}
+
+$("#colorBtn").spectrum({
+  hide:function(selectColor){
+    replaceStr = '<span style="color:'+selectColor+';">'+selectStr+'</span>';
+    updater();
+  },
+  color: "#000000",
+  showPaletteOnly: true,
+  hideAfterPaletteSelect: true,
+  palette: [
+    ["#000000", "#333333", "#666666", "#999999", "#cccccc", "#ffffff"],
+    ["#f44336", "#ff9800", "#ffeb3b", "#8bc34a", "#4caf50", "#03a9f4", "#2196f3"]
+  ]
+});
+//
+// inputArea.onselect = function(){
+//   selectStr = getSelectText();
+//   console.log(selectStr);
+// }
+
+
+var editBtn = document.getElementsByClassName("editBtn");
+for (var i = 0; i < editBtn.length; i++) {
+  editBtn[i].onmouseover=function(){
+    selectStr = getSelectText();
+    console.log(selectStr);
+  }
+  editBtn[i].onclick = function(){
+    // selectStr = getSelectText();
+    replaceSelectText(this.getAttribute("att"));
+  }
+}
+
+
+var sliderArray = document.getElementsByClassName("slider");
+var mbValue;
+for (var i = 0; i < sliderArray.length; i++) {
+  sliderArray[i].oninput = function(){
+
+    if(!sliderOpen)selectStr =  ('getSelection' in window ? window : document).getSelection()
+    sliderOpen =true;
+  replaceStr='<p style="margin-bottom:'+this.value+'px">'+selectStr+"</p>\n";
+  updater();
+  }
+}
+
+});
+
+
+
+</script>
+
+</body>
+</html>
